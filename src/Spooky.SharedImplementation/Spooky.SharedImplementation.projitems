@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>4c9c87ab-eeae-46e4-8c7d-82bfa1158a52</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Spooky</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfoCommon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuardExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpClientTransport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRpcClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRpcSerailizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRpcTransport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RpcClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RpcClientOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RpcError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RpcException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RpcRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RpcResponse.cs" />
+  </ItemGroup>
+</Project>

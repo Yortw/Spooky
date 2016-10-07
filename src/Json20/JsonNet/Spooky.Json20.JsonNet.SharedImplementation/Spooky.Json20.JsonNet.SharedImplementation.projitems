@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>43680bf5-640b-4aad-a84d-a770250c2a99</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Spooky.Json20</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfoCommon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcHttpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcErrorCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcHttpTransport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcMediaTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcVersions.cs" />
+  </ItemGroup>
+</Project>
