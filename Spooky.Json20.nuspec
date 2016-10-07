@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Spooky.Json20</id>
+        <version>1.0.0.0</version>
+        <title>Spooky Json RPC 2.0</title>
+        <authors>Troy Willmot</authors>
+        <owners>Yortw</owners>
+        <licenseUrl>https://github.com/Yortw/Spooky/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/Yortw/Spooky</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/Yortw/Spooky/master/SpookyIcon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An client RPC library (abstract + Json RPC 2.0 implementation) for .Net.</description>
+        <copyright>Copyright 2016</copyright>
+        <language>en-AU</language>
+        <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 netstandard15</tags>
+        <dependencies>
+            <group>
+                <dependency id="McStreamy" version="1.0.0" />
+                <dependency id="Spooky" version="1.0.0" />
+            </group>
+            <group targetFramework=".NETPortable0.0-net4+sl5+wp8+win8">
+                <dependency id="Newtonsoft.Json" version="6.0.8" />
+            </group>
+            <group targetFramework=".NETStandard15">
+                <dependency id="Newtonsoft.Json" version="9.0.1" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard15\bin\Release\Spooky.Json20.JsonNet.NetStandard15.pdb" target="lib\netstandard1.5\Spooky.NetStandard15pdb\Spooky.Json20.JsonNet.NetStandard15.pdb" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard15\bin\Release\Spooky.Json20.JsonNet.NetStandard15.xml" target="lib\netstandard1.5\Spooky.NetStandard15pdb\Spooky.Json20.JsonNet.NetStandard15.xml" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard15\bin\Release\Spooky.Json20.JsonNet.NetStandard15.dll" target="lib\netstandard1.5\Spooky.NetStandard15pdb\Spooky.Json20.JsonNet.NetStandard15.dll" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\bin\Release\Spooky.Json20.JsonNet.Portable.dll" target="lib\portable-net4+sl5+wp8+win8\Spooky.Json20.JsonNet.Portable.dll" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\bin\Release\Spooky.Json20.JsonNet.Portable.pdb" target="lib\portable-net4+sl5+wp8+win8\Spooky.Json20.JsonNet.Portable.pdb" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\bin\Release\Spooky.Json20.JsonNet.Portable.XML" target="lib\portable-net4+sl5+wp8+win8\Spooky.Json20.JsonNet.Portable.XML" />
+        <file src="**\*.cs" target="src" />
+    </files>
+</package>

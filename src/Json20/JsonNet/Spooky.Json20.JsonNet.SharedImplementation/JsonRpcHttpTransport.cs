@@ -5,8 +5,22 @@ using System.Text;
 
 namespace Spooky.Json20
 {
+	/// <summary>
+	/// An HTTP transport for Json RPC requests, using an <see cref="HttpClient"/> to make requests.
+	/// </summary>
+	/// <remarks>
+	/// <para>You can inject your own <see cref="HttpClient"/> instance via the constructors to control the HTTP pipeline and add features such as authorisation etc.</para>
+	/// <para>If no <see cref="HttpClient"/> is injected the system creates a new instance with GZIP and Deflate compression support enabled.</para>
+	/// </remarks>
 	public class JsonRpcHttpTransport : HttpClientTransport
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsonRpcHttpTransport"/> class.
+		/// </summary>
+		/// <remarks>
+		/// <para>Creates an instance using a new <see cref="HttpClient"/> instance with compression enabled and <see cref="System.Text.UTF8Encoding"/> encoding.</para>
+		/// </remarks>
+		/// <param name="serviceAddress">The service address.</param>
 		public JsonRpcHttpTransport(Uri serviceAddress) : 
 			base
 			(

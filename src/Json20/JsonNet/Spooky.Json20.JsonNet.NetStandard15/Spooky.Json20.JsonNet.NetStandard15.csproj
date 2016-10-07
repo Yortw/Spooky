@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Spooky.Json20.JsonNet.NetStandard15.xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\SpookyCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\..\SpookyCodeAnalysis.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->

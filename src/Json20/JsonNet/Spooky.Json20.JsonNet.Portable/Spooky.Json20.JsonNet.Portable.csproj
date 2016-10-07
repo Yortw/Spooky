@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\..\..\SpookyCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Spooky.Json20.JsonNet.Portable.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +39,7 @@
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\..\..\SpookyCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\Spooky.Json20.JsonNet.Portable.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->

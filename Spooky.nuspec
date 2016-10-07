@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Spooky</id>
+        <version>1.0.0.0</version>
+        <title>Spooky</title>
+        <authors>Troy Willmot</authors>
+        <owners>Yortw</owners>
+        <licenseUrl>https://github.com/Yortw/Spooky/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/Yortw/Spooky</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/Yortw/Spooky/master/SpookyIcon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>You probably want Spooky.Json20, not this package. Spooky is a client RPC library for .Net, providing an abstraction layer for RPC calls (using sytems such as Json RPC).</description>
+        <copyright>Copyright 2016</copyright>
+        <language>en-AU</language>
+        <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 netstandard15</tags>
+        <dependencies>
+            <group targetFramework=".NETPortable0.0-net4+sl5+wp8+win8">
+                <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="src\Spooky.NetStandard15\bin\Release\Spooky.NetStandard15.pdb" target="lib\netstandard1.5\Spooky.NetStandard15pdb\Spooky.NetStandard15.pdb" />
+        <file src="src\Spooky.NetStandard15\bin\Release\Spooky.NetStandard15.dll" target="lib\netstandard1.5\Spooky.NetStandard15.dll" />
+        <file src="src\Spooky.NetStandard15\bin\Release\Spooky.NetStandard15.XML" target="lib\netstandard1.5\Spooky.NetStandard15.XML" />
+        <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.dll" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.dll" />
+        <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.pdb" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.pdb" />
+        <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.XML" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.XML" />
+        <file src="**\*.cs" target="src" />
+    </files>
+</package>

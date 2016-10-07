@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Spooky.Json20
 {
+	/// <summary>
+	/// Provides constants for HTTP content media types for json RPC requests.
+	/// </summary>
 	public static class JsonRpcMediaTypes
 	{
 		/// <summary>
