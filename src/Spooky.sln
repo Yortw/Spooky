@@ -15,11 +15,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Spooky.Json20.JsonNet.Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Json20.JsonNet.Portable", "Json20\JsonNet\Spooky.Json20.JsonNet.Portable\Spooky.Json20.JsonNet.Portable.csproj", "{A6D343FA-7F0C-4F0E-8C3A-96C3751DCB23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Json20.JsonNet.NetStandard15", "Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard15\Spooky.Json20.JsonNet.NetStandard15.csproj", "{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Json20.JsonNet.NetStandard11", "Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\Spooky.Json20.JsonNet.NetStandard11.csproj", "{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Tests", "Spooky.Tests\Spooky.Tests.csproj", "{3687AF9E-4BAB-40A2-9384-F2A03ED11E69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.NetStandard15", "Spooky.NetStandard15\Spooky.NetStandard15.csproj", "{FB183198-A302-4536-92D5-6BA3942EEB09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.NetStandard11", "Spooky.NetStandard11\Spooky.NetStandard11.csproj", "{FB183198-A302-4536-92D5-6BA3942EEB09}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

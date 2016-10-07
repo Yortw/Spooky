@@ -13,7 +13,7 @@
         <description>You probably want Spooky.Json20, not this package. Spooky is a client RPC library for .Net, providing an abstraction layer for RPC calls (using sytems such as Json RPC).</description>
         <copyright>Copyright 2016</copyright>
         <language>en-AU</language>
-        <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 netstandard15</tags>
+        <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 NetStandard11</tags>
         <dependencies>
             <group targetFramework=".NETPortable0.0-net4+sl5+wp8+win8">
                 <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
@@ -21,9 +21,9 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="src\Spooky.NetStandard15\bin\Release\Spooky.NetStandard15.pdb" target="lib\netstandard1.5\Spooky.NetStandard15pdb\Spooky.NetStandard15.pdb" />
-        <file src="src\Spooky.NetStandard15\bin\Release\Spooky.NetStandard15.dll" target="lib\netstandard1.5\Spooky.NetStandard15.dll" />
-        <file src="src\Spooky.NetStandard15\bin\Release\Spooky.NetStandard15.XML" target="lib\netstandard1.5\Spooky.NetStandard15.XML" />
+        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.pdb" target="lib\netstandard1.5\Spooky.NetStandard11.pdb" />
+        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.dll" target="lib\netstandard1.5\Spooky.NetStandard11.dll" />
+        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.XML" target="lib\netstandard1.5\Spooky.NetStandard11.XML" />
         <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.dll" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.dll" />
         <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.pdb" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.pdb" />
         <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.XML" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.XML" />
