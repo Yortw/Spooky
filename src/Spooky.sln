@@ -15,11 +15,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Spooky.Json20.JsonNet.Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Json20.JsonNet.Portable", "Json20\JsonNet\Spooky.Json20.JsonNet.Portable\Spooky.Json20.JsonNet.Portable.csproj", "{A6D343FA-7F0C-4F0E-8C3A-96C3751DCB23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.NetStandard15", "Spooky.NetStandard15\Spooky.NetStandard15.csproj", "{5B489D9B-4ECB-44A0-AB9D-E9C8B9944207}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Json20.JsonNet.NetStandard15", "Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard15\Spooky.Json20.JsonNet.NetStandard15.csproj", "{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Tests", "Spooky.Tests\Spooky.Tests.csproj", "{3687AF9E-4BAB-40A2-9384-F2A03ED11E69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.NetStandard15", "Spooky.NetStandard15\Spooky.NetStandard15.csproj", "{FB183198-A302-4536-92D5-6BA3942EEB09}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -27,6 +27,8 @@ Global
 		Spooky.SharedImplementation\Spooky.SharedImplementation.projitems*{4c9c87ab-eeae-46e4-8c7d-82bfa1158a52}*SharedItemsImports = 13
 		Spooky.SharedImplementation\Spooky.SharedImplementation.projitems*{6c80be52-ecbb-469a-a681-2e038cf9f2e7}*SharedItemsImports = 4
 		Json20\JsonNet\Spooky.Json20.JsonNet.SharedImplementation\Spooky.Json20.JsonNet.SharedImplementation.projitems*{a6d343fa-7f0c-4f0e-8c3a-96c3751dcb23}*SharedItemsImports = 4
+		Json20\JsonNet\Spooky.Json20.JsonNet.SharedImplementation\Spooky.Json20.JsonNet.SharedImplementation.projitems*{f42e821b-d95e-47e9-b3f1-d0b9cf8e9b5e}*SharedItemsImports = 4
+		Spooky.SharedImplementation\Spooky.SharedImplementation.projitems*{fb183198-a302-4536-92d5-6ba3942eeb09}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +43,6 @@ Global
 		{A6D343FA-7F0C-4F0E-8C3A-96C3751DCB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6D343FA-7F0C-4F0E-8C3A-96C3751DCB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6D343FA-7F0C-4F0E-8C3A-96C3751DCB23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B489D9B-4ECB-44A0-AB9D-E9C8B9944207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B489D9B-4ECB-44A0-AB9D-E9C8B9944207}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B489D9B-4ECB-44A0-AB9D-E9C8B9944207}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B489D9B-4ECB-44A0-AB9D-E9C8B9944207}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,6 +51,10 @@ Global
 		{3687AF9E-4BAB-40A2-9384-F2A03ED11E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3687AF9E-4BAB-40A2-9384-F2A03ED11E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3687AF9E-4BAB-40A2-9384-F2A03ED11E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB183198-A302-4536-92D5-6BA3942EEB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB183198-A302-4536-92D5-6BA3942EEB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB183198-A302-4536-92D5-6BA3942EEB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB183198-A302-4536-92D5-6BA3942EEB09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

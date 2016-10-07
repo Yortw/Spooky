@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Reflection;
 
 namespace Spooky.Json20
 {
@@ -89,8 +90,23 @@ namespace Spooky.Json20
 			if (request == null) throw new ArgumentNullException(nameof(request));
 			if (outputStream == null) throw new ArgumentNullException(nameof(outputStream));
 
+			object jsonRpcRequest = RequestToJsonRequest(request);
+
+			using (var nonClosingStream = new McStreamy.NonClosingStreamAdapter(outputStream))
+			using (var textWriter = new System.IO.StreamWriter(nonClosingStream, _TextEncoding))
+			using (var writer = new Newtonsoft.Json.JsonTextWriter(textWriter))
+			{
+				_Serializer.Serialize(writer, jsonRpcRequest);
+				writer.Flush();
+				textWriter.Flush();
+			}
+		}
+
+		private static object RequestToJsonRequest(RpcRequest request)
+		{
 			var argumentsType = request.Arguments?.GetType();
 
+			IEnumerable<KeyValuePair<string, object>> enumerableArgs;
 			object jsonRpcRequest = null;
 			if (argumentsType == null || argumentsType == typeof(object[]))
 			{
@@ -108,10 +124,10 @@ namespace Spooky.Json20
 					Arguments = (IEnumerable<KeyValuePair<string, object>>)request.Arguments
 				};
 			}
-			else if (typeof(IEnumerable<KeyValuePair<string, object>>).IsAssignableFrom(argumentsType))
+			else if ((enumerableArgs = request.Arguments as IEnumerable<KeyValuePair<string, object>>) != null)
 			{
 				var argsDict = new Dictionary<string, object>();
-				foreach (var kvp in (IEnumerable<KeyValuePair<string, object>>)request.Arguments)
+				foreach (var kvp in enumerableArgs)
 				{
 					argsDict.Add(kvp.Key, kvp.Value);
 				}
@@ -125,16 +141,7 @@ namespace Spooky.Json20
 			else
 				throw new ArgumentException(nameof(RpcRequest) + "." + nameof(RpcRequest.Arguments) + " must be a supported type, usually object[] or Dictionary<string, object>. Check the documentation.");
 
-
-			using (var nonClosingStream = new McStreamy.NonClosingStreamAdapter(outputStream))
-			using (var textWriter = new System.IO.StreamWriter(nonClosingStream, _TextEncoding))
-			using (var writer = new Newtonsoft.Json.JsonTextWriter(textWriter))
-			{
-				_Serializer.Serialize(writer, jsonRpcRequest);
-				writer.Flush();
-				textWriter.Flush();
-			}
+			return jsonRpcRequest;
 		}
-
 	}
 }
