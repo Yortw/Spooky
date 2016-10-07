@@ -11,17 +11,6 @@ namespace Spooky.Json20
 	public class JsonRpcRequest<T>
 	{
 
-		#region Static Unique ID Generation Stuff
-
-		private static volatile int _RequestId;
-
-		private static int GenerateUniqueId()
-		{
-			return System.Threading.Interlocked.Increment(ref _RequestId);
-		}
-
-		#endregion
-
 		/// <summary>
 		/// Gets or sets the Json RPC version being used. Defaults to <seealso cref="JsonRpcVersions.Version2"/>.
 		/// </summary>
@@ -39,7 +28,7 @@ namespace Spooky.Json20
 		/// </remarks>
 		/// <value>The identifier.</value>
 		[Newtonsoft.Json.JsonProperty("id")]
-		public int Id { get; set; } = GenerateUniqueId();
+		public int Id { get; set; } = JsonRpcRequestIdGenerator.GenerateUniqueId();
 
 		/// <summary>
 		/// Gets or sets the name of the remote method to be called.

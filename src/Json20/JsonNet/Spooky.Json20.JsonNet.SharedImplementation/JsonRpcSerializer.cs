@@ -17,6 +17,7 @@ namespace Spooky.Json20
 		private static readonly object[] EmptyOrdinalArguments = new object[] { };
 
 		private System.Text.Encoding _TextEncoding;
+		private Newtonsoft.Json.JsonSerializerSettings _Settings;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsonRpcSerializer"/> class.
@@ -29,10 +30,22 @@ namespace Spooky.Json20
 		/// Initializes a new instance of the <see cref="JsonRpcSerializer"/> class with a custom text encoding.
 		/// </summary>
 		/// <param name="textEncoding">The text encoding to use. If null, <see cref="System.Text.UTF8Encoding"/> is used.</param>
-		public JsonRpcSerializer(System.Text.Encoding textEncoding)
+		public JsonRpcSerializer(System.Text.Encoding textEncoding) : this(textEncoding, null)
 		{
 			_TextEncoding = textEncoding ?? System.Text.UTF8Encoding.UTF8;
 		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsonRpcSerializer"/> class with a custom text encoding.
+		/// </summary>
+		/// <param name="textEncoding">The text encoding to use. If null, <see cref="System.Text.UTF8Encoding"/> is used.</param>
+		/// <param name="settings">Settings for the Json.Net serialiser, allows controlling things like date formats. Provide null for default settings.</param>
+		public JsonRpcSerializer(System.Text.Encoding textEncoding, Newtonsoft.Json.JsonSerializerSettings settings) 
+		{
+			_TextEncoding = textEncoding ?? System.Text.UTF8Encoding.UTF8;
+			_Settings = settings;
+		}
+		
 
 		/// <summary>
 		/// Deserializes a response from the server.
@@ -107,7 +120,11 @@ namespace Spooky.Json20
 
 			try
 			{
-				retVal = new System.IO.MemoryStream(encoding.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(jsonRpcRequest)));
+				if (_Settings == null)
+					retVal = new System.IO.MemoryStream(encoding.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(jsonRpcRequest)));
+				else
+					retVal = new System.IO.MemoryStream(encoding.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(jsonRpcRequest, _Settings)));
+
 				retVal.Seek(0, SeekOrigin.Begin);
 				return retVal;
 			}

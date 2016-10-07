@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)JsonRpcHttpTransport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JsonRpcMediaTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JsonRpcRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonRpcRequestIdGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JsonRpcSerializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JsonRpcVersions.cs" />
   </ItemGroup>
