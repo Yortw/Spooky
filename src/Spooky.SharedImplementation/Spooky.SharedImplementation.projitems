@@ -13,7 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GuardExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpClientTransport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRpcClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IRpcSerailizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRpcSerializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRpcTransport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RpcClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RpcClientOptions.cs" />

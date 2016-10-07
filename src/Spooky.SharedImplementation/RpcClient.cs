@@ -119,8 +119,11 @@ namespace Spooky
 		private async Task<T> SendRequest<T>(string methodName, RpcRequest request)
 		{
 			//Serialize request
-			using (var stream = _Options.Serializer.Serialize(request))
+			using (var stream = new System.IO.MemoryStream())
 			{
+				_Options.Serializer.Serialize(request, stream);
+				stream.Seek(0, System.IO.SeekOrigin.Begin);
+
 				//SendRequest
 				using (var responseStream = await _Options.Transport.SendRequest(stream).ConfigureAwait(false))
 				{

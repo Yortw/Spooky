@@ -17,7 +17,7 @@ namespace Spooky.Json20
 		private static readonly object[] EmptyOrdinalArguments = new object[] { };
 
 		private System.Text.Encoding _TextEncoding;
-		private Newtonsoft.Json.JsonSerializerSettings _Settings;
+		private Newtonsoft.Json.JsonSerializer _Serializer;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsonRpcSerializer"/> class.
@@ -32,7 +32,6 @@ namespace Spooky.Json20
 		/// <param name="textEncoding">The text encoding to use. If null, <see cref="System.Text.UTF8Encoding"/> is used.</param>
 		public JsonRpcSerializer(System.Text.Encoding textEncoding) : this(textEncoding, null)
 		{
-			_TextEncoding = textEncoding ?? System.Text.UTF8Encoding.UTF8;
 		}
 
 		/// <summary>
@@ -43,9 +42,13 @@ namespace Spooky.Json20
 		public JsonRpcSerializer(System.Text.Encoding textEncoding, Newtonsoft.Json.JsonSerializerSettings settings) 
 		{
 			_TextEncoding = textEncoding ?? System.Text.UTF8Encoding.UTF8;
-			_Settings = settings;
+
+			if (settings == null)
+				_Serializer = Newtonsoft.Json.JsonSerializer.Create();
+			else
+				_Serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
 		}
-		
+
 
 		/// <summary>
 		/// Deserializes a response from the server.
@@ -53,11 +56,15 @@ namespace Spooky.Json20
 		/// <typeparam name="T">The type for the payment of the response.</typeparam>
 		/// <param name="serializedData">A stream containing the serialized data from the serve.</param>
 		/// <returns>A <see cref="RpcResponse{T}"/> where the result is the payload from the server.</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public RpcResponse<T> Deserialize<T>(Stream serializedData)
 		{
 			using (var reader = new System.IO.StreamReader(serializedData))
 			{
-				return Newtonsoft.Json.JsonConvert.DeserializeObject<RpcResponse<T>>(reader.ReadToEnd());
+				using (var jsonReader = new Newtonsoft.Json.JsonTextReader(reader))
+				{
+					return _Serializer.Deserialize<RpcResponse<T>>(jsonReader);
+				}
 			}
 		}
 
@@ -65,6 +72,7 @@ namespace Spooky.Json20
 		/// Serializes a <see cref="RpcRequest"/> for transmission to the server.
 		/// </summary>
 		/// <param name="request">The <see cref="RpcRequest"/> to serialize.</param>
+		/// <param name="outputStream">A <see cref="Stream"/> to write the serialized output to.</param>
 		/// <remarks>
 		/// <para>The <see cref="RpcRequest.Arguments"/> must be one of the following types;
 		/// <list type="Bullet">
@@ -74,10 +82,12 @@ namespace Spooky.Json20
 		/// </list>
 		/// </para>
 		/// </remarks>
-		/// <returns>A <see cref="System.IO.Stream"/> containing the serialized content.</returns>
-		public Stream Serialize(RpcRequest request)
+		/// <returns>A <see cref="Stream"/> containing the serialized content.</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+		public void Serialize(RpcRequest request, System.IO.Stream outputStream)
 		{
 			if (request == null) throw new ArgumentNullException(nameof(request));
+			if (outputStream == null) throw new ArgumentNullException(nameof(outputStream));
 
 			var argumentsType = request.Arguments?.GetType();
 
@@ -115,23 +125,14 @@ namespace Spooky.Json20
 			else
 				throw new ArgumentException(nameof(RpcRequest) + "." + nameof(RpcRequest.Arguments) + " must be a supported type, usually object[] or Dictionary<string, object>. Check the documentation.");
 
-			var encoding = _TextEncoding ?? System.Text.UTF8Encoding.UTF8;
-			System.IO.Stream retVal = null;
 
-			try
+			using (var nonClosingStream = new McStreamy.NonClosingStreamAdapter(outputStream))
+			using (var textWriter = new System.IO.StreamWriter(nonClosingStream, _TextEncoding))
+			using (var writer = new Newtonsoft.Json.JsonTextWriter(textWriter))
 			{
-				if (_Settings == null)
-					retVal = new System.IO.MemoryStream(encoding.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(jsonRpcRequest)));
-				else
-					retVal = new System.IO.MemoryStream(encoding.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(jsonRpcRequest, _Settings)));
-
-				retVal.Seek(0, SeekOrigin.Begin);
-				return retVal;
-			}
-			catch
-			{
-				retVal?.Dispose();
-				throw;
+				_Serializer.Serialize(writer, jsonRpcRequest);
+				writer.Flush();
+				textWriter.Flush();
 			}
 		}
 

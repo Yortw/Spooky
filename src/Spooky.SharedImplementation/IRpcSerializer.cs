@@ -19,8 +19,8 @@ namespace Spooky
 		/// Serializes the specified <see cref="RpcRequest"/> to a stream.
 		/// </summary>
 		/// <param name="request">The <see cref="RpcRequest"/> to serialize.</param>
-		/// <returns>A <see cref="System.IO.Stream"/> containing the serialized content, and set to the beginning (or appropriate read location) of the stream.</returns>
-		System.IO.Stream Serialize(RpcRequest request);
+		/// <param name="outputStream">The stream to write the serialized output to.</param>
+		void Serialize(RpcRequest request, System.IO.Stream outputStream);
 
 		/// <summary>
 		/// Deserializes the specified <see cref="RpcResponse{T}"/> from a stream.

@@ -37,8 +37,11 @@ namespace Spooky.Tests
 			};
 
 			Json20.JsonRpcRequestIdGenerator.ResetId();
-			using (var stream = serializer.Serialize(request))
+			using (var stream = new System.IO.MemoryStream())
 			{
+				serializer.Serialize(request, stream);
+				stream.Seek(0, System.IO.SeekOrigin.Begin);
+
 				using (var reader = new System.IO.StreamReader(stream))
 				{
 					Assert.AreEqual("{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"testmethod\",\"params\":{\"TestArg\":1}}", reader.ReadToEnd());
