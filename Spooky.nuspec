@@ -21,9 +21,9 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.pdb" target="lib\netstandard1.5\Spooky.NetStandard11.pdb" />
-        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.dll" target="lib\netstandard1.5\Spooky.NetStandard11.dll" />
-        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.XML" target="lib\netstandard1.5\Spooky.NetStandard11.XML" />
+        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.pdb" target="lib\netstandard1.1\Spooky.NetStandard11.pdb" />
+        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.dll" target="lib\netstandard1.1\Spooky.NetStandard11.dll" />
+        <file src="src\Spooky.NetStandard11\bin\Release\Spooky.NetStandard11.XML" target="lib\netstandard1.1\Spooky.NetStandard11.XML" />
         <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.dll" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.dll" />
         <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.pdb" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.pdb" />
         <file src="src\Spooky.Portable\bin\Release\Spooky.Portable.XML" target="lib\portable-net4+sl5+wp8+win8\Spooky.Portable.XML" />

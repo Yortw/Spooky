@@ -110,6 +110,10 @@ namespace Spooky.Json20
 			object jsonRpcRequest = null;
 			if (argumentsType == null || argumentsType == typeof(object[]))
 			{
+				// Although the Json RPC spec specifically says the arguments parameter
+				// may be omitted, some servers do not actually support this. Ensure
+				// that even if there are no args we transmit an empty array, to keep
+				// compatibility with those servers.
 				jsonRpcRequest = new JsonRpcRequest<object[]>()
 				{
 					MethodName = request.MethodName,

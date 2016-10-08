@@ -24,14 +24,14 @@
             <group targetFramework=".NetStandard11">
                 <dependency id="McStreamy" version="1.0.0" />
                 <dependency id="Spooky" version="1.0.0" />
-                <dependency id="Newtonsoft.Json" version="6.0.8" />
+                <dependency id="Newtonsoft.Json" version="9.0.1" />
             </group>
         </dependencies>
     </metadata>
     <files>
-        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\bin\Release\Spooky.Json20.JsonNet.NetStandard11.pdb" target="lib\netstandard1.5\Spooky.Json20.JsonNet.NetStandard11.pdb" />
-        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\bin\Release\Spooky.Json20.JsonNet.NetStandard11.xml" target="lib\netstandard1.5\Spooky.Json20.JsonNet.NetStandard11.xml" />
-        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\bin\Release\Spooky.Json20.JsonNet.NetStandard11.dll" target="lib\netstandard1.5\Spooky.Json20.JsonNet.NetStandard11.dll" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\bin\Release\Spooky.Json20.JsonNet.NetStandard11.pdb" target="lib\netstandard1.1\Spooky.Json20.JsonNet.NetStandard11.pdb" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\bin\Release\Spooky.Json20.JsonNet.NetStandard11.xml" target="lib\netstandard1.1\Spooky.Json20.JsonNet.NetStandard11.xml" />
+        <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\bin\Release\Spooky.Json20.JsonNet.NetStandard11.dll" target="lib\netstandard1.1\Spooky.Json20.JsonNet.NetStandard11.dll" />
         <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\bin\Release\Spooky.Json20.JsonNet.Portable.dll" target="lib\portable-net4+sl5+wp8+win8\Spooky.Json20.JsonNet.Portable.dll" />
         <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\bin\Release\Spooky.Json20.JsonNet.Portable.pdb" target="lib\portable-net4+sl5+wp8+win8\Spooky.Json20.JsonNet.Portable.pdb" />
         <file src="src\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\bin\Release\Spooky.Json20.JsonNet.Portable.XML" target="lib\portable-net4+sl5+wp8+win8\Spooky.Json20.JsonNet.Portable.XML" />
