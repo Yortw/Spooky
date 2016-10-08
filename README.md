@@ -24,7 +24,7 @@ Currently;
 * UWP 10+ (Windows 10 Universal Programs)
 
 ## Build Status
-[![Build status](https://ci.appveyor.com/api/projects/status/88t4uo6hvxfiqbe0?svg=true)](https://ci.appveyor.com/project/Yortw/Spooky)
+[![Build status](https://ci.appveyor.com/api/projects/status/o2m5qx499ctm58qg?svg=true)](https://ci.appveyor.com/project/Yortw/spooky)
 
 ## How do I use Spooky?
 *We got your samples right here*
