@@ -23,7 +23,7 @@ namespace Spooky.Json20
 		/// <summary>
 		/// Initializes a new instance of the <see cref="JsonRpcSerializer"/> class.
 		/// </summary>
-		public JsonRpcSerializer() : this(System.Text.UTF8Encoding.UTF8)
+		public JsonRpcSerializer() : this(new System.Text.UTF8Encoding(false))
 		{
 		}
 

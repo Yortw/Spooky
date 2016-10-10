@@ -48,6 +48,29 @@ namespace Spooky.Tests
 				}
 			}
 		}
+		
+		[TestMethod]
+		public void JsonRpcSerializer_SerializeRequest_DoesNotWriteBomByDefault()
+		{
+			var serializer = new Json20.JsonRpcSerializer();
+			var args = new Dictionary<String, object>();
+			args.Add("TestArg", 1);
+
+			var request = new RpcRequest()
+			{
+				MethodName = "testmethod",
+				Arguments = args,
+			};
+
+			Json20.JsonRpcRequestIdGenerator.ResetId();
+			using (var stream = new System.IO.MemoryStream())
+			{
+				serializer.Serialize(request, stream);
+				Assert.AreEqual(69, stream.Length);
+
+				Assert.AreEqual("{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"testmethod\",\"params\":{\"TestArg\":1}}", System.Text.UTF8Encoding.UTF8.GetString(stream.ToArray()));
+			}
+		}
 
 		[TestMethod]
 		public void JsonRpcSerializer_DeserializesResponse()
