@@ -22,11 +22,28 @@ namespace Spooky.Json20
 		/// </remarks>
 		/// <param name="serviceAddress">The service address.</param>
 		public JsonRpcHttpTransport(Uri serviceAddress) : 
+			this
+			(
+				serviceAddress,
+				CreateDefaultJsonRpcHttpClient()
+			)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JsonRpcHttpTransport"/> class.
+		/// </summary>
+		/// <remarks>
+		/// <para>Creates an instance using a new <see cref="HttpClient"/> instance with compression enabled and <see cref="System.Text.UTF8Encoding"/> encoding.</para>
+		/// </remarks>
+		/// <param name="serviceAddress">The service address.</param>
+		/// <param name="httpClient">An <see cref="System.Net.Http.HttpClient"/> to use when making HTTP requests.</param>
+		public JsonRpcHttpTransport(Uri serviceAddress, HttpClient httpClient) :
 			base
 			(
-				serviceAddress, JsonRpcMediaTypes.ApplicationJson, 
-				System.Text.UTF8Encoding.UTF8.WebName.ToLower(), 
-				CreateDefaultJsonRpcHttpClient()
+				serviceAddress, JsonRpcMediaTypes.ApplicationJson,
+				System.Text.UTF8Encoding.UTF8.WebName.ToLower(),
+				httpClient
 			)
 		{
 		}
