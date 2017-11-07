@@ -372,15 +372,15 @@ namespace Spooky.XmlRpc
 
 		#endregion
 
-		private static RpcResponse<T> DeserialiseXmlRpcArray<T>(XElement arrayNode)
+		private static object DeserialiseXmlRpcArray(XElement arrayNode, Type returnType)
 		{
-			var elementType = typeof(T).GetElementType() ?? typeof(T).GenericTypeArguments.First();
+			var elementType = returnType.GetElementType() ?? returnType.GenericTypeArguments.First();
 			var elementsAreLoosleyTyped = elementType == typeof(object);
 			var dataNode = arrayNode.Descendants("data");
 
-			if (IsList(typeof(T)))
+			if (IsList(returnType))
 			{
-				var list = ConstructTypeInstance<System.Collections.IList>(typeof(T));
+				var list = ConstructTypeInstance<System.Collections.IList>(returnType);
 				foreach (var n in dataNode.Descendants())
 				{
 					if (elementsAreLoosleyTyped)
@@ -388,12 +388,9 @@ namespace Spooky.XmlRpc
 					else
 						list.Add(DeserialiseArgumentValue(n.Value, elementType));
 				}
-				return new RpcResponse<T>()
-				{
-					Result = (T)(object)list
-				};
+				return list;
 			}
-			else if (typeof(T).IsArray || typeof(T).GetGenericTypeDefinition() == typeof(IEnumerable<>) || typeof(T) == typeof(System.Collections.IEnumerable))
+			else if (returnType.IsArray || returnType.GetGenericTypeDefinition() == typeof(IEnumerable<>) || returnType == typeof(System.Collections.IEnumerable))
 			{
 				var nodes = dataNode.Descendants().ToList();
 				Array array = Array.CreateInstance(elementType, nodes.Count);
@@ -405,13 +402,18 @@ namespace Spooky.XmlRpc
 					else
 						array.SetValue(DeserialiseArgumentValue(n.Value, elementType), index);
 				}
-				return new RpcResponse<T>()
-				{
-					Result = (T)(object)array
-				};
+				return array;
 			}
 
-			throw new InvalidOperationException($"Cannot convert XML-RPC array to {typeof(T).FullName}.");
+			throw new InvalidOperationException($"Cannot convert XML-RPC array to {returnType.FullName}.");
+		}
+
+		private static RpcResponse<T> DeserialiseXmlRpcArray<T>(XElement arrayNode)
+		{
+			return new RpcResponse<T>()
+			{
+				Result = (T)DeserialiseXmlRpcArray(arrayNode, typeof(T))
+			};
 		}
 
 		private static TReturn ConstructTypeInstance<TReturn>(Type type)
@@ -468,15 +470,11 @@ namespace Spooky.XmlRpc
 			).Any();
 		}
 
-		private static RpcResponse<T> DeserialiseXmlRpcStruct<T>(XElement structNode)
+		private static object DeserialiseXmlRpcStruct(XElement structNode, Type returnType)
 		{
-			if (IsDictionary(typeof(T)))
-			{
-				return new RpcResponse<T>() { Result = (T)(Object)DeserialiseXmlRpcStructAsDictionary(structNode, typeof(T)) };
-			}
+			if (IsDictionary(returnType)) return DeserialiseXmlRpcStructAsDictionary(structNode, returnType); 
 
-			var returnType = typeof(T);
-			var retVal = ConstructTypeInstance<T>(returnType);
+			object retVal = ConstructTypeInstance<object>(returnType);
 			var properties = ReflectionCache.GetTypeInfo(returnType).Properties;
 
 			foreach (var property in properties)
@@ -486,19 +484,24 @@ namespace Spooky.XmlRpc
 
 				var name = memberNode.Element("name").Value;
 				var valueNode = memberNode.Element("value");
-				if (valueNode.Name == "struct")
+				var valueTypeNode = valueNode?.FirstNode as XElement;
+
+				if (valueTypeNode?.Name?.LocalName == "struct")
+					property.SetValue(retVal, DeserialiseXmlRpcStruct(valueTypeNode, property.PropertyType));
+				else if (valueTypeNode?.Name?.LocalName == "array")
 				{
-					//TODO:
-				}
-				else if (valueNode.Name == "array")
-				{
-					//TODO:
+					property.SetValue(retVal, DeserialiseXmlRpcArray(valueTypeNode, property.PropertyType));
 				}
 				else
 					property.SetValue(retVal, DeserialiseArgumentValue(valueNode.Value, property.PropertyType));
 			}
 
-			return new RpcResponse<T>() { Result = retVal };
+			return retVal;
+		}
+
+		private static RpcResponse<T> DeserialiseXmlRpcStruct<T>(XElement structNode)
+		{
+			return new RpcResponse<T>() { Result = (T)DeserialiseXmlRpcStruct(structNode, typeof(T)) };
 		}
 
 		private static System.Collections.IDictionary DeserialiseXmlRpcStructAsDictionary(XElement structNode, Type dictionaryType)

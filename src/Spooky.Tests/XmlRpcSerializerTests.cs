@@ -1444,6 +1444,93 @@ namespace Spooky.Tests
 			}
 		}
 
+		[TestMethod]
+		public void XmlRpcSerializer_DeserializesStructWithSubStructAndArray()
+		{
+			var responseDoc = new XDocument
+			(
+				new XElement("methodResponse",
+					new XElement("params",
+						new XElement("param",
+							new XElement("value",
+								new XElement("struct",
+									new XElement
+									(
+										"member",
+										new XElement("name", "RelationshipType"),
+										new XElement("value", new XElement("string", "Marriage"))
+									),
+									new XElement
+									(
+										"member",
+										new XElement("name", "Character1"),
+										new XElement("value",
+											new XElement("struct",
+												new XElement("member",
+													new XElement("name", "Name"),
+													new XElement("value", new XElement("string", "Rod Gallowglass"))
+												),
+												new XElement("member",
+													new XElement("name", "Age"),
+													new XElement("value", new XElement("i4", 32))
+												)
+											)
+										)
+									),
+									new XElement
+									(
+										"member",
+										new XElement("name", "Character2"),
+										new XElement("value", 
+											new XElement("struct",
+												new XElement("member",
+													new XElement("name", "Name"),
+													new XElement("value", new XElement("string", "Gwen Gallowglass"))
+												),
+												new XElement("member",
+													new XElement("name", "Age"),
+													new XElement("value", new XElement("i4", 29))
+												)
+											)
+										)
+									),
+									new XElement("member",
+										new XElement("name", "RandomTestData"),
+										new XElement("value",
+											new XElement("array",
+												new XElement("data",
+													new XElement("i4", 4),
+													new XElement("boolean", true),
+													new XElement("string", "test")
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			);
+			var responseString = responseDoc.ToString();
+
+			var serializer = new XmlRpcSerializer();
+			using (var ms = new System.IO.MemoryStream(System.Text.UTF8Encoding.UTF8.GetBytes(responseString)))
+			{
+				var response = serializer.Deserialize<Relationship>(ms);
+				Assert.IsNull(response.Error);
+				Assert.AreEqual("Marriage", response.Result.RelationshipType);
+				Assert.AreEqual("Rod Gallowglass", response.Result.Character1.Name);
+				Assert.AreEqual(32, response.Result.Character1.Age);
+				Assert.AreEqual("Gwen Gallowglass", response.Result.Character2.Name);
+				Assert.AreEqual(29, response.Result.Character2.Age);
+
+				Assert.AreEqual(4, response.Result.RandomTestData[0]);
+				Assert.AreEqual(true, response.Result.RandomTestData[1]);
+				Assert.AreEqual("test", response.Result.RandomTestData[2]);
+			}
+		}
+
 		[ExpectedException(typeof(RpcException))]
 		[TestMethod]
 		public void XmlRpcSerializer_Deserialize_ThrowsOnNoValueOrFault()
@@ -1521,6 +1608,15 @@ namespace Spooky.Tests
 			public System.IO.Stream ProfileStream { get; set; }
 
 			public object APropertyThatIsNotDeserialised { get; set; }
+		}
+
+		private class Relationship
+		{
+			public string RelationshipType { get; set; }
+			public Character Character1 { get; set; }
+			public Character Character2 { get; set; }
+
+			public object[] RandomTestData { get; set; }
 		}
 	}
 
