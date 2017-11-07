@@ -3,8 +3,6 @@ using System.Net.Http;
 
 namespace Spooky.XmlRpc
 {
-	// http://www.cookcomputing.com/xmlrpcsamples/math.rem#math.Add
-
 	/// <summary>
 	/// An <see cref="IRpcClient"/> implementation for making XML-RPC calls.
 	/// </summary>

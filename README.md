@@ -20,11 +20,13 @@ By relying on the abstraction, clients are protected from changing requirements 
 Currently;
 
 * .Net Framework 4.0+
-* Net Standard 1.1
+* Net Standard 1.1 
 * Xamarin.iOS
 * Xamarin.Android
 * WinRT (Windows Store Apps 8.1)
 * UWP 10+ (Windows 10 Universal Programs)
+
+**NOTE**: Spooky.Xml for [XML-RPC](http://xmlrpc.scripting.com/spec.html) is only supported on .Net Standard 1.1
 
 ## Build Status
 [![Build status](https://ci.appveyor.com/api/projects/status/o2m5qx499ctm58qg?svg=true)](https://ci.appveyor.com/project/Yortw/spooky)

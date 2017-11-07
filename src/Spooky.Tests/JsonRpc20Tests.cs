@@ -36,6 +36,14 @@ namespace Spooky.Tests
 		}
 
 		[TestMethod]
+		public async Task InvokeMethod_WithSingleStringArg()
+		{
+			var value = System.Guid.NewGuid().ToString();
+			var echo = await _Client.Invoke<string>("echo", value).ConfigureAwait(false);
+			Assert.AreEqual(value, echo);
+		}
+
+		[TestMethod]
 		public async Task InvokeMethod_WithTwoPositionalArgs()
 		{
 			var answer = await _Client.Invoke<int>("add", 4, 6).ConfigureAwait(false);
@@ -56,6 +64,13 @@ namespace Spooky.Tests
 			args.TryAdd("a", 4);
 			args.TryAdd("b", 6);
 			var answer = await _Client.Invoke<int>("add", args).ConfigureAwait(false);
+			Assert.AreEqual(10, answer);
+		}
+
+		[TestMethod]
+		public async Task InvokeMethod_WithAnonymousTypeArgs()
+		{
+			var answer = await _Client.Invoke<int>("add", new { a = 4, b = 6 }).ConfigureAwait(false);
 			Assert.AreEqual(10, answer);
 		}
 

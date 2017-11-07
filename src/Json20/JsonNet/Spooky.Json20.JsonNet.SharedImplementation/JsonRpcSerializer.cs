@@ -108,17 +108,30 @@ namespace Spooky.Json20
 
 			IEnumerable<KeyValuePair<string, object>> enumerableArgs;
 			object jsonRpcRequest = null;
-			if (argumentsType == null || argumentsType == typeof(object[]))
+			object[] argsArray = null;
+
+			if (argumentsType == null || (argsArray = request.Arguments as object[]) != null)
 			{
-				// Although the Json RPC spec specifically says the arguments parameter
-				// may be omitted, some servers do not actually support this. Ensure
-				// that even if there are no args we transmit an empty array, to keep
-				// compatibility with those servers.
-				jsonRpcRequest = new JsonRpcRequest<object[]>()
+				if (argumentsType != null && argsArray.Length == 1 && argsArray[0] != null && !IsPrimitive(argsArray[0])) 
 				{
-					MethodName = request.MethodName,
-					Arguments = (object[])request.Arguments ?? EmptyOrdinalArguments
-				};
+					jsonRpcRequest = new JsonRpcRequest<object>()
+					{
+						MethodName = request.MethodName,
+						Arguments = argsArray[0]
+					};
+				}
+				else
+				{
+					// Although the Json RPC spec specifically says the arguments parameter
+					// may be omitted, some servers do not actually support this. Ensure
+					// that even if there are no args we transmit an empty array, to keep
+					// compatibility with those servers.
+					jsonRpcRequest = new JsonRpcRequest<object[]>()
+					{
+						MethodName = request.MethodName,
+						Arguments = (object[])request.Arguments ?? EmptyOrdinalArguments
+					};
+				}
 			}
 			else if (argumentsType == typeof(Dictionary<string, object>))
 			{
@@ -146,6 +159,21 @@ namespace Spooky.Json20
 				throw new ArgumentException(nameof(RpcRequest) + "." + nameof(RpcRequest.Arguments) + " must be a supported type, usually object[] or Dictionary<string, object>. Check the documentation.");
 
 			return jsonRpcRequest;
+		}
+
+		private static bool IsPrimitive(object value)
+		{
+			if (value == null) return false;
+
+			var type = value.GetType();
+
+			if (type == typeof(string)) return true;
+
+#if LEGACYPORTABLE
+			return type.IsValueType;
+#else
+			return type.GetTypeInfo().IsValueType;
+#endif
 		}
 	}
 }

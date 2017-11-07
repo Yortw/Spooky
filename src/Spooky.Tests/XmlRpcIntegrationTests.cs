@@ -76,22 +76,15 @@ namespace Spooky.Tests
 			Assert.AreEqual("Wyoming", answer.State3);
 		}
 
-		//[TestMethod]
-		//public async Task InvokeMethod_WithDictionaryNamedArgs()
-		//{
-		//	var answer = await _Client.Invoke<int>("add", new Dictionary<string, object>() { { "a", 6 }, { "b", 4 } }).ConfigureAwait(false);
-		//	Assert.AreEqual(10, answer);
-		//}
-
-		//[TestMethod]
-		//public async Task InvokeMethod_WithAlternateDictionaryNamedArgs()
-		//{
-		//	var args = new System.Collections.Concurrent.ConcurrentDictionary<string, object>();
-		//	args.TryAdd("a", 4);
-		//	args.TryAdd("b", 6);
-		//	var answer = await _Client.Invoke<int>("add", args).ConfigureAwait(false);
-		//	Assert.AreEqual(10, answer);
-		//}
+		[TestMethod]
+		public async Task InvokeMethod_WithDictionaryNamedArgs()
+		{
+			var answer = await _StateClient.Invoke<StateResponse>("examples.getStateStructResponse", new Dictionary<string, object>() { { "State1", 1 }, { "State2", 25 }, { "State3", 50 } }).ConfigureAwait(false);
+			Assert.IsNotNull(answer);
+			Assert.AreEqual("Alabama", answer.State1);
+			Assert.AreEqual("Missouri", answer.State2);
+			Assert.AreEqual("Wyoming", answer.State3);
+		}
 
 		//[TestMethod]
 		//public async Task InvokeMethod_WithKeyValuePairEnumerableNamedArgs()

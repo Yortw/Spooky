@@ -206,7 +206,12 @@ namespace Spooky.XmlRpc
 				writer.WriteStartElement("param");
 				writer.WriteStartElement("value");
 
-				WriteStruct(writer, arguments, arguments.GetType());
+				var type = arguments.GetType();
+
+				if (typeof(IEnumerable<KeyValuePair<string, object>>).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+					WriteStruct(writer, (IEnumerable<KeyValuePair<string, object>>)arguments);
+				else
+					WriteStruct(writer, arguments, type);
 
 				writer.WriteEndElement();
 				writer.WriteEndElement();
@@ -293,6 +298,30 @@ namespace Spooky.XmlRpc
 
 				writer.WriteStartElement("value");
 				WriteArgWithType(writer, prop.GetValue(arg));
+				writer.WriteEndElement();
+
+				writer.WriteEndElement();
+			}
+
+			writer.WriteEndElement();
+		}
+
+		private static void WriteStruct(XmlWriter writer, IEnumerable<KeyValuePair<string, object>> arguments)
+		{
+			if (arguments == null) return;
+
+			writer.WriteStartElement("struct");
+
+			foreach (var kvp in arguments)
+			{
+				writer.WriteStartElement("member");
+
+				writer.WriteStartElement("name");
+				writer.WriteValue(kvp.Key);
+				writer.WriteEndElement();
+
+				writer.WriteStartElement("value");
+				WriteArgWithType(writer, kvp.Value);
 				writer.WriteEndElement();
 
 				writer.WriteEndElement();
