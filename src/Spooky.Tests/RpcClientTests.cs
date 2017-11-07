@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +42,22 @@ namespace Spooky.Tests
 				Transport = new Json20.JsonRpcHttpTransport(new Uri("http://somewhere.com")),
 				Serializer = new Json20.JsonRpcSerializer() }
 			);
+		}
+
+		[ExpectedException(typeof(ArgumentNullException))]
+		[TestMethod]
+		public async Task RpcClient_Invoke_ThrowsOnNullMethod()
+		{
+			var client = new RpcClient(new RpcClientOptions() { Transport = new HttpClientTransport(new Uri("http://test.com"), "application/json", "UTF-8"), Serializer = new Json20.JsonRpcSerializer() });
+			var x = await client.Invoke<int>(null);
+		}
+
+		[ExpectedException(typeof(ArgumentException))]
+		[TestMethod]
+		public async Task RpcClient_Invoke_ThrowsOnEmptyMethod()
+		{
+			var client = new RpcClient(new RpcClientOptions() { Transport = new HttpClientTransport(new Uri("http://test.com"), "application/json", "UTF-8"), Serializer = new Json20.JsonRpcSerializer() });
+			var x = await client.Invoke<int>(String.Empty);
 		}
 
 		#endregion

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Spooky.Xml</id>
+        <version>1.0.0.4</version>
+        <title>Spooky XML RPC</title>
+        <authors>Troy Willmot</authors>
+        <owners>Yortw</owners>
+        <licenseUrl>https://github.com/Yortw/Spooky/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/Yortw/Spooky</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/Yortw/Spooky/master/SpookyIcon.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An client RPC library (abstract + XML RPC implementation) for .Net.</description>
+        <copyright>Copyright 2017</copyright>
+        <language>en-AU</language>
+        <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 NetStandard11 xml xml-rpc rpc</tags>
+        <dependencies>
+            <group targetFramework=".NETPortable0.0-net4+sl5+wp8+win8">
+                <dependency id="McStreamy" version="1.0.0" />
+                <dependency id="Spooky" version="1.0.0.0" />
+                <dependency id="Microsoft.Net.Http" version="2.2.29" />
+            </group>
+            <group targetFramework=".NetStandard11">
+                <dependency id="McStreamy" version="1.0.0" />
+                <dependency id="Spooky" version="1.0.0.0" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="src\XmlRpc\Spooky.XmlRpc.NetStandard11\bin\Release\netstandard1.1\Spooky.NetStandard11.pdb" target="lib\netstandard1.1\Spooky.NetStandard11.pdb" />
+        <file src="src\XmlRpc\Spooky.XmlRpc.NetStandard11\bin\Release\netstandard1.1\Spooky.NetStandard11.xml" target="lib\netstandard1.1\Spooky.NetStandard11.xml" />
+        <file src="src\XmlRpc\Spooky.XmlRpc.NetStandard11\bin\Release\netstandard1.1\Spooky.NetStandard11.dll" target="lib\netstandard1.1\Spooky.NetStandard11.dll" />
+        <file src="**\*.cs" target="src" />
+    </files>
+</package>

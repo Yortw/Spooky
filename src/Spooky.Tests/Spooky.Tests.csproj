@@ -40,6 +40,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="McStreamy.NetStandard10, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\McStreamy.1.0.0.1\lib\netstandard1.0\McStreamy.NetStandard10.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -52,9 +55,8 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -71,6 +73,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -86,20 +89,27 @@
   </Choose>
   <ItemGroup>
     <Compile Include="HttpClientTransport.cs" />
+    <Compile Include="XmlRpcClientTests.cs" />
+    <Compile Include="XmlRpcIntegrationTests.cs" />
     <Compile Include="JsonRpc20Tests.cs" />
+    <Compile Include="XmlRpcSerializerTests.cs" />
     <Compile Include="JsonRpcSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RpcClientTests.cs" />
     <Compile Include="RpcExceptionTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Json20\JsonNet\Spooky.Json20.JsonNet.Portable\Spooky.Json20.JsonNet.Portable.csproj">
-      <Project>{a6d343fa-7f0c-4f0e-8c3a-96c3751dcb23}</Project>
-      <Name>Spooky.Json20.JsonNet.Portable</Name>
+    <ProjectReference Include="..\Json20\JsonNet\Spooky.Json20.JsonNet.NetStandard11\Spooky.Json20.JsonNet.NetStandard11.csproj">
+      <Project>{f42e821b-d95e-47e9-b3f1-d0b9cf8e9b5e}</Project>
+      <Name>Spooky.Json20.JsonNet.NetStandard11</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spooky.Portable\Spooky.Portable.csproj">
-      <Project>{6c80be52-ecbb-469a-a681-2e038cf9f2e7}</Project>
-      <Name>Spooky.Portable</Name>
+    <ProjectReference Include="..\Spooky.NetStandard11\Spooky.NetStandard11.csproj">
+      <Project>{fb183198-a302-4536-92d5-6ba3942eeb09}</Project>
+      <Name>Spooky.NetStandard11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlRpc\Spooky.XmlRpc.NetStandard11\Spooky.XmlRpc.NetStandard11.csproj">
+      <Project>{66e4eefe-bf61-4e3d-a021-c7040e57dbd5}</Project>
+      <Name>Spooky.XmlRpc.NetStandard11</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

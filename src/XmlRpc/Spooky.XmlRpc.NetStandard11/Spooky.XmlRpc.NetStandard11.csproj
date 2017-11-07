@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <RootNamespace>Spooky.XmlRpc</RootNamespace>
+		<!-- Required in both test/product projects. This is a temporary workaround for https://github.com/Microsoft/vstest/issues/800 -->
+		<DebugType>Full</DebugType>
+	</PropertyGroup>
+
+  <Import Project="..\Spooky.XmlRpc.SharedImplementation\Spooky.XmlRpc.SharedImplementation.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="McStreamy" Version="1.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Spooky.NetStandard11\Spooky.NetStandard11.csproj" />
+  </ItemGroup>
+
+</Project>

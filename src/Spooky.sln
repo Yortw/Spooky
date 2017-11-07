@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Spooky.SharedImplementation", "Spooky.SharedImplementation\Spooky.SharedImplementation.shproj", "{4C9C87AB-EEAE-46E4-8C7D-82BFA1158A52}"
 EndProject
@@ -21,12 +21,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.Tests", "Spooky.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooky.NetStandard11", "Spooky.NetStandard11\Spooky.NetStandard11.csproj", "{FB183198-A302-4536-92D5-6BA3942EEB09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XmlRpc", "XmlRpc", "{24B44DA3-E083-466A-902B-DB2D02BC8DA8}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Spooky.XmlRpc.SharedImplementation", "XmlRpc\Spooky.XmlRpc.SharedImplementation\Spooky.XmlRpc.SharedImplementation.shproj", "{E920F0C2-8BF3-477B-9AFB-90589277CFC6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spooky.XmlRpc.NetStandard11", "XmlRpc\Spooky.XmlRpc.NetStandard11\Spooky.XmlRpc.NetStandard11.csproj", "{66E4EEFE-BF61-4E3D-A021-C7040E57DBD5}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Json20\JsonNet\Spooky.Json20.JsonNet.SharedImplementation\Spooky.Json20.JsonNet.SharedImplementation.projitems*{43680bf5-640b-4aad-a84d-a770250c2a99}*SharedItemsImports = 13
 		Spooky.SharedImplementation\Spooky.SharedImplementation.projitems*{4c9c87ab-eeae-46e4-8c7d-82bfa1158a52}*SharedItemsImports = 13
 		Spooky.SharedImplementation\Spooky.SharedImplementation.projitems*{6c80be52-ecbb-469a-a681-2e038cf9f2e7}*SharedItemsImports = 4
 		Json20\JsonNet\Spooky.Json20.JsonNet.SharedImplementation\Spooky.Json20.JsonNet.SharedImplementation.projitems*{a6d343fa-7f0c-4f0e-8c3a-96c3751dcb23}*SharedItemsImports = 4
+		XmlRpc\Spooky.XmlRpc.SharedImplementation\Spooky.XmlRpc.SharedImplementation.projitems*{e920f0c2-8bf3-477b-9afb-90589277cfc6}*SharedItemsImports = 13
 		Json20\JsonNet\Spooky.Json20.JsonNet.SharedImplementation\Spooky.Json20.JsonNet.SharedImplementation.projitems*{f42e821b-d95e-47e9-b3f1-d0b9cf8e9b5e}*SharedItemsImports = 4
 		Spooky.SharedImplementation\Spooky.SharedImplementation.projitems*{fb183198-a302-4536-92d5-6ba3942eeb09}*SharedItemsImports = 4
 	EndGlobalSection
@@ -55,6 +62,10 @@ Global
 		{FB183198-A302-4536-92D5-6BA3942EEB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB183198-A302-4536-92D5-6BA3942EEB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB183198-A302-4536-92D5-6BA3942EEB09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E4EEFE-BF61-4E3D-A021-C7040E57DBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E4EEFE-BF61-4E3D-A021-C7040E57DBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E4EEFE-BF61-4E3D-A021-C7040E57DBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E4EEFE-BF61-4E3D-A021-C7040E57DBD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +75,10 @@ Global
 		{43680BF5-640B-4AAD-A84D-A770250C2A99} = {59FBF057-B8D3-4FEC-86FC-59300FAC8362}
 		{A6D343FA-7F0C-4F0E-8C3A-96C3751DCB23} = {59FBF057-B8D3-4FEC-86FC-59300FAC8362}
 		{F42E821B-D95E-47E9-B3F1-D0B9CF8E9B5E} = {59FBF057-B8D3-4FEC-86FC-59300FAC8362}
+		{E920F0C2-8BF3-477B-9AFB-90589277CFC6} = {24B44DA3-E083-466A-902B-DB2D02BC8DA8}
+		{66E4EEFE-BF61-4E3D-A021-C7040E57DBD5} = {24B44DA3-E083-466A-902B-DB2D02BC8DA8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4F1308A-D53B-48D0-B280-B270745560CE}
 	EndGlobalSection
 EndGlobal

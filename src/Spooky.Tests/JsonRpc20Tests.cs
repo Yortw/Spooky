@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -17,6 +17,9 @@ namespace Spooky.Tests
 
 		public JsonRpc20Tests()
 		{
+			System.Net.ServicePointManager.UseNagleAlgorithm = false;
+			System.Net.ServicePointManager.Expect100Continue = false;
+			
 			_Client = new JsonRpcHttpClient(new Uri(ServiceAddress));
 		}
 
