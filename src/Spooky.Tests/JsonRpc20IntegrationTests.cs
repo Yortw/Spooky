@@ -7,7 +7,7 @@ using Spooky.Json20;
 namespace Spooky.Tests
 {
 	[TestClass]
-	public class JsonRpc20Tests
+	public class JsonRpc20IntegrationTests
 	{
 		// Note, tests use a demo 'Jayrock' server. Jayrock is an awesome 
 		// Asp.Net/server implementation of Json RPC. https://github.com/atifaziz/Jayrock
@@ -15,7 +15,7 @@ namespace Spooky.Tests
 
 		private JsonRpcHttpClient _Client;
 
-		public JsonRpc20Tests()
+		public JsonRpc20IntegrationTests()
 		{
 			System.Net.ServicePointManager.UseNagleAlgorithm = false;
 			System.Net.ServicePointManager.Expect100Continue = false;

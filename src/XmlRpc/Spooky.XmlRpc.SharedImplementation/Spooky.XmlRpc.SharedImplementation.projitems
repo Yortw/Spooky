@@ -9,6 +9,7 @@
     <Import_RootNamespace>Spooky.XmlRpc</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ReflectionCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlRpcMediaTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlRpcHttpTransport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmlRpcSerializer.cs" />

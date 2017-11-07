@@ -208,7 +208,7 @@ namespace Spooky.XmlRpc
 
 				var type = arguments.GetType();
 
-				if (typeof(IEnumerable<KeyValuePair<string, object>>).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+				if (IsSupportedEnumerableOfKeyValuePair(type))
 					WriteStruct(writer, (IEnumerable<KeyValuePair<string, object>>)arguments);
 				else
 					WriteStruct(writer, arguments, type);
@@ -216,6 +216,14 @@ namespace Spooky.XmlRpc
 				writer.WriteEndElement();
 				writer.WriteEndElement();
 			}
+		}
+
+		private static bool IsSupportedEnumerableOfKeyValuePair(Type type)
+		{
+			return ReflectionCache.GetTypeInfo(typeof(IEnumerable<KeyValuePair<string, object>>)).TypeInfo.IsAssignableFrom
+			(
+				ReflectionCache.GetTypeInfo(type).TypeInfo
+			);
 		}
 
 		private static void WriteArgWithType(XmlWriter writer, object arg)
@@ -288,7 +296,8 @@ namespace Spooky.XmlRpc
 
 			writer.WriteStartElement("struct");
 
-			foreach (var prop in argType.GetTypeInfo().DeclaredProperties)
+			var properties = ReflectionCache.GetTypeInfo(argType).Properties;
+			foreach (var prop in properties)
 			{
 				writer.WriteStartElement("member");
 
@@ -371,7 +380,7 @@ namespace Spooky.XmlRpc
 
 			if (IsList(typeof(T)))
 			{
-				System.Collections.IList list = (System.Collections.IList)typeof(T).GetTypeInfo().DeclaredConstructors.First().Invoke(null);
+				var list = ConstructTypeInstance<System.Collections.IList>(typeof(T));
 				foreach (var n in dataNode.Descendants())
 				{
 					if (elementsAreLoosleyTyped)
@@ -405,6 +414,11 @@ namespace Spooky.XmlRpc
 			throw new InvalidOperationException($"Cannot convert XML-RPC array to {typeof(T).FullName}.");
 		}
 
+		private static TReturn ConstructTypeInstance<TReturn>(Type type)
+		{
+			return (TReturn)ReflectionCache.GetTypeInfo(type).DefaultConstructor().Invoke(null);
+		}
+
 		private static object DeserialiseArgumentValue(string value, string xmlRpcType)
 		{
 			switch (xmlRpcType)
@@ -432,10 +446,12 @@ namespace Spooky.XmlRpc
 
 		private static bool IsList(Type type)
 		{
+			var implementedInterfaces = ReflectionCache.GetTypeInfo(type).ImplementedInterfaces;
+
 			return !type.IsArray &&
 				(
 					from i
-					in type.GetTypeInfo().ImplementedInterfaces
+					in implementedInterfaces
 					where (i.IsConstructedGenericType && i.GetGenericTypeDefinition() == typeof(System.Collections.Generic.IList<>))
 					select i
 				).Any();
@@ -443,8 +459,10 @@ namespace Spooky.XmlRpc
 
 		private static bool IsDictionary(Type type)
 		{
+			var implementedInterfaces = ReflectionCache.GetTypeInfo(type).ImplementedInterfaces;
+
 			return (from i
-				in type.GetTypeInfo().ImplementedInterfaces
+				in implementedInterfaces 
 				where i.IsConstructedGenericType && i.GetGenericTypeDefinition() == typeof(System.Collections.Generic.IDictionary<,>)
 				select i
 			).Any();
@@ -457,9 +475,9 @@ namespace Spooky.XmlRpc
 				return new RpcResponse<T>() { Result = (T)(Object)DeserialiseXmlRpcStructAsDictionary(structNode, typeof(T)) };
 			}
 
-			var returnType = typeof(T).GetTypeInfo();
-			var retVal = (T)returnType.DeclaredConstructors.FirstOrDefault().Invoke(null);
-			var properties = returnType.DeclaredProperties;
+			var returnType = typeof(T);
+			var retVal = ConstructTypeInstance<T>(returnType);
+			var properties = ReflectionCache.GetTypeInfo(returnType).Properties;
 
 			foreach (var property in properties)
 			{
@@ -477,7 +495,7 @@ namespace Spooky.XmlRpc
 					//TODO:
 				}
 				else
-					returnType.GetDeclaredProperty(name).SetValue(retVal, DeserialiseArgumentValue(valueNode.Value, property.PropertyType));
+					property.SetValue(retVal, DeserialiseArgumentValue(valueNode.Value, property.PropertyType));
 			}
 
 			return new RpcResponse<T>() { Result = retVal };
@@ -485,7 +503,7 @@ namespace Spooky.XmlRpc
 
 		private static System.Collections.IDictionary DeserialiseXmlRpcStructAsDictionary(XElement structNode, Type dictionaryType)
 		{
-			System.Collections.IDictionary retVal = (System.Collections.IDictionary)dictionaryType.GetTypeInfo().DeclaredConstructors.First().Invoke(null);
+			var retVal = ConstructTypeInstance<System.Collections.IDictionary>(dictionaryType);
 
 			foreach (var node in structNode.Elements("member"))
 			{
@@ -509,10 +527,15 @@ namespace Spooky.XmlRpc
 				return Double.Parse(value);
 			else if (propertyType == typeof(byte[]) || propertyType == typeof(IEnumerable<byte>))
 				return System.Convert.FromBase64String(value);
-			else if (typeof(System.IO.Stream).GetTypeInfo().IsAssignableFrom(propertyType.GetTypeInfo()))
+			else if (IsDerivedFromStream(propertyType))
 				return System.Convert.FromBase64String(value).ToStream();
 
 			throw new InvalidOperationException($"{propertyType.FullName} is not a supported type for XML-RPC.");
+		}
+
+		private static bool IsDerivedFromStream(Type propertyType)
+		{
+			return ReflectionCache.GetTypeInfo(typeof(System.IO.Stream)).TypeInfo.IsAssignableFrom(ReflectionCache.GetTypeInfo(propertyType).TypeInfo);
 		}
 
 		private static RpcResponse<T> DeserializeFaultResponse<T>(XElement faultNode)

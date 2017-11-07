@@ -91,7 +91,7 @@
     <Compile Include="HttpClientTransport.cs" />
     <Compile Include="XmlRpcClientTests.cs" />
     <Compile Include="XmlRpcIntegrationTests.cs" />
-    <Compile Include="JsonRpc20Tests.cs" />
+    <Compile Include="JsonRpc20IntegrationTests.cs" />
     <Compile Include="XmlRpcSerializerTests.cs" />
     <Compile Include="JsonRpcSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -70,6 +70,7 @@ namespace Spooky.Tests
 		public async Task InvokeMethod_WithStructArgAndResponse()
 		{
 			var answer = await _StateClient.Invoke<StateResponse>("examples.getStateStructResponse", new { State1 = 1, State2 = 25, State3 = 50 }).ConfigureAwait(false);
+
 			Assert.IsNotNull(answer);
 			Assert.AreEqual("Alabama", answer.State1);
 			Assert.AreEqual("Missouri", answer.State2);
