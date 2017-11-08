@@ -348,6 +348,53 @@ namespace Spooky.Tests
 		}
 
 		[TestMethod]
+		public void XmlRpcSerializer_SerializesObjectWithNestedObjectAndArrayAsStruct()
+		{
+			var serializer = new XmlRpcSerializer();
+			var args = new object[] { "testValue" };
+
+			var created = DateTime.Parse("2017-11-06T21:06:25");
+			var request = new RpcRequest()
+			{
+				MethodName = "testmethod",
+				Arguments = new Relationship
+				{
+					RelationshipType = "Marriage",
+					Character1 = new Character()
+					{
+						Name = "Rod Galloglass",
+						Age = 32,
+						Created = created
+					},
+					Character2 = new Character()
+					{
+						Name = "Gwen Galloglass",
+						Age = 29,
+						Created = created
+					},
+					RandomTestData = new object[]
+					{
+						4,
+						true,
+						"test"
+					}
+				}
+			};
+
+			using (var stream = new System.IO.MemoryStream())
+			{
+				serializer.Serialize(request, stream);
+				stream.Seek(0, System.IO.SeekOrigin.Begin);
+
+				using (var reader = new System.IO.StreamReader(stream))
+				{
+					var actual = reader.ReadToEnd();
+					Assert.AreEqual("<?xml version=\"1.0\" encoding=\"utf-8\"?><methodCall><methodName>testmethod</methodName><params><param><value><struct><member><name>RelationshipType</name><value><string>Marriage</string></value></member><member><name>Character1</name><value><struct><member><name>Name</name><value><string>Rod Galloglass</string></value></member><member><name>Age</name><value><i4>32</i4></value></member><member><name>Created</name><value><dateTime.iso8601>2017-11-06T21:06:25</dateTime.iso8601></value></member><member><name>IsTrue</name><value><boolean>false</boolean></value></member><member><name>Score</name><value><double>0</double></value></member><member><name>ProfileData</name><value /></member><member><name>ProfileStream</name><value /></member><member><name>APropertyThatIsNotDeserialised</name><value /></member></struct></value></member><member><name>Character2</name><value><struct><member><name>Name</name><value><string>Gwen Galloglass</string></value></member><member><name>Age</name><value><i4>29</i4></value></member><member><name>Created</name><value><dateTime.iso8601>2017-11-06T21:06:25</dateTime.iso8601></value></member><member><name>IsTrue</name><value><boolean>false</boolean></value></member><member><name>Score</name><value><double>0</double></value></member><member><name>ProfileData</name><value /></member><member><name>ProfileStream</name><value /></member><member><name>APropertyThatIsNotDeserialised</name><value /></member></struct></value></member><member><name>RandomTestData</name><value><array><data><value><i4>4</i4></value><value><boolean>true</boolean></value><value><string>test</string></value></data></array></value></member></struct></value></param></params></methodCall>", actual);
+				}
+			}
+		}
+
+		[TestMethod]
 		public void XmlRpcSerializer_SerializesChildArray()
 		{
 			var serializer = new XmlRpcSerializer();
