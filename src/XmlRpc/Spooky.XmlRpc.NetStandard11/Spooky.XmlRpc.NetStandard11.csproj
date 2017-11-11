@@ -5,7 +5,20 @@
     <RootNamespace>Spooky.XmlRpc</RootNamespace>
 		<!-- Required in both test/product projects. This is a temporary workaround for https://github.com/Microsoft/vstest/issues/800 -->
 		<DebugType>Full</DebugType>
+		<Version>1.0.4</Version>
+		<Authors>Yortw</Authors>
+		<Company />
+		<Product>Spooky.Xml</Product>
+		<Copyright>Copyright (c) 2017.</Copyright>
 	</PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.1\Spooky.XmlRpc.NetStandard11.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.1\Spooky.XmlRpc.NetStandard11.xml</DocumentationFile>
+  </PropertyGroup>
 
   <Import Project="..\Spooky.XmlRpc.SharedImplementation\Spooky.XmlRpc.SharedImplementation.projitems" Label="Shared" />
 

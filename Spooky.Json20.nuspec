@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Spooky.Json20</id>
-        <version>1.0.0.4</version>
+        <version>1.0.5-Alpha</version>
         <title>Spooky Json RPC 2.0</title>
         <authors>Troy Willmot</authors>
         <owners>Yortw</owners>
@@ -11,20 +11,20 @@
         <iconUrl>https://raw.githubusercontent.com/Yortw/Spooky/master/SpookyIcon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An client RPC library (abstract + Json RPC 2.0 implementation) for .Net.</description>
-        <copyright>Copyright 2016</copyright>
+        <copyright>Copyright 2017</copyright>
         <language>en-AU</language>
         <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 NetStandard11</tags>
         <dependencies>
             <group targetFramework=".NETPortable0.0-net4+sl5+wp8+win8">
-                <dependency id="McStreamy" version="1.0.0" />
-                <dependency id="Spooky" version="1.0.0.0" />
-                <dependency id="Newtonsoft.Json" version="6.0.8" />
+                <dependency id="McStreamy" version="1.0.0.1" />
+                <dependency id="Spooky" version="1.0.0.5-Alpha" />
+                <dependency id="Newtonsoft.Json" version="10.0.3" />
                 <dependency id="Microsoft.Net.Http" version="2.2.29" />
             </group>
             <group targetFramework=".NetStandard11">
-                <dependency id="McStreamy" version="1.0.0" />
-                <dependency id="Spooky" version="1.0.0.0" />
-                <dependency id="Newtonsoft.Json" version="9.0.1" />
+                <dependency id="McStreamy" version="1.0.0.1" />
+                <dependency id="Spooky" version="1.0.0.5-Alpha" />
+                <dependency id="Newtonsoft.Json" version="10.0.3" />
             </group>
         </dependencies>
     </metadata>

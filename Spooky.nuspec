@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Spooky</id>
-        <version>1.0.0.4</version>
+        <version>1.0.5-Alpha</version>
         <title>Spooky</title>
         <authors>Troy Willmot</authors>
         <owners>Yortw</owners>
@@ -11,7 +11,7 @@
         <iconUrl>https://raw.githubusercontent.com/Yortw/Spooky/master/SpookyIcon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>You probably want Spooky.Json20, not this package. Spooky is a client RPC library for .Net, providing an abstraction layer for RPC calls (using sytems such as Json RPC).</description>
-        <copyright>Copyright 2016</copyright>
+        <copyright>Copyright 2017</copyright>
         <language>en-AU</language>
         <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 NetStandard11</tags>
         <dependencies>
