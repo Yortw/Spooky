@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Spooky.Xml</id>
-        <version>1.0.5-Alpha</version>
+        <version>1.0.5</version>
         <title>Spooky XML RPC</title>
         <authors>Troy Willmot</authors>
         <owners>Yortw</owners>
@@ -11,18 +11,18 @@
         <iconUrl>https://raw.githubusercontent.com/Yortw/Spooky/master/SpookyIcon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>An client RPC library (abstract + XML RPC implementation) for .Net.</description>
-        <copyright>Copyright 2017</copyright>
+        <copyright>Copyright 2018</copyright>
         <language>en-AU</language>
         <tags>portable xamarin ios android windowsphone winrt uwp mobile stream upnp netfx40 .net4 NetStandard11 xml xml-rpc rpc</tags>
         <dependencies>
             <group targetFramework=".NETPortable0.0-net4+sl5+wp8+win8">
                 <dependency id="McStreamy" version="1.0.0.1" />
-                <dependency id="Spooky" version="1.0.0.5-Alpha" />
+                <dependency id="Spooky" version="1.0.0.5" />
                 <dependency id="Microsoft.Net.Http" version="2.2.29" />
             </group>
             <group targetFramework=".NetStandard11">
                 <dependency id="McStreamy" version="1.0.0.1" />
-                <dependency id="Spooky" version="1.0.0.5-Alpha" />
+                <dependency id="Spooky" version="1.0.0.5" />
             </group>
         </dependencies>
     </metadata>
